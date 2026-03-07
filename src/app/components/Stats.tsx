@@ -25,7 +25,7 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="py-24 bg-gray-950">
+    <section id="pricing" className="py-24 bg-gray-950 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

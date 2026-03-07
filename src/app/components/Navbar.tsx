@@ -1,4 +1,9 @@
 import { motion } from 'motion/react';
+import { STRIPE_PAYMENT_LINK } from '../config';
+
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+}
 
 export function Navbar() {
   return (
@@ -21,21 +26,26 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             className="hidden md:flex items-center gap-8"
           >
-            <a href="#features" className="text-gray-500 hover:text-gray-900 transition-colors">
+            <button onClick={() => scrollTo('features')} className="text-gray-500 hover:text-gray-900 transition-colors">
               Features
-            </a>
-            <a href="#demo" className="text-gray-500 hover:text-gray-900 transition-colors">
-              Demo
-            </a>
-            <a href="#pricing" className="text-gray-500 hover:text-gray-900 transition-colors">
-              Pricing
-            </a>
-            <a href="#contact" className="text-gray-500 hover:text-gray-900 transition-colors">
-              Contact
-            </a>
-            <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg transition-colors">
-              Get Started
             </button>
+            <button onClick={() => scrollTo('demo')} className="text-gray-500 hover:text-gray-900 transition-colors">
+              Demo
+            </button>
+            <button onClick={() => scrollTo('pricing')} className="text-gray-500 hover:text-gray-900 transition-colors">
+              Pricing
+            </button>
+            <button onClick={() => scrollTo('contact')} className="text-gray-500 hover:text-gray-900 transition-colors">
+              Contact
+            </button>
+            <a
+              href={STRIPE_PAYMENT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg transition-colors"
+            >
+              Get Started
+            </a>
           </motion.div>
         </div>
       </div>

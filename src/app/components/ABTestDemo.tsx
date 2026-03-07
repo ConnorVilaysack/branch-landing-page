@@ -587,7 +587,7 @@ export function ABTestDemo() {
   const layout = layouts[layoutIdx].type;
 
   return (
-    <section className="py-24 bg-white">
+    <section id="demo" className="py-24 bg-white scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Section heading */}
         <div className="text-center mb-12">

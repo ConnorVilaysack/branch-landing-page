@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
+import { STRIPE_PAYMENT_LINK } from '../config';
 
 export function Hero() {
   return (
@@ -71,10 +72,21 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex items-center justify-center gap-4 flex-wrap"
           >
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg">
-              Start Optimizing <ArrowRight className="ml-2 w-5 h-5" />
+            <Button
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg"
+              asChild
+            >
+              <a href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
+                Start Optimizing <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
-            <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2 border-gray-200 text-gray-700 hover:bg-gray-50">
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 py-6 text-lg border-2 border-gray-200 text-gray-700 hover:bg-gray-50"
+              onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Watch Demo
             </Button>
           </motion.div>

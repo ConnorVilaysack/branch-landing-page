@@ -1,10 +1,11 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
+import { STRIPE_PAYMENT_LINK } from '../config';
 
 export function CTA() {
   return (
-    <section className="py-24 bg-white">
+    <section id="contact" className="py-24 bg-white scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,15 +69,19 @@ export function CTA() {
               <Button
                 size="lg"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg"
+                asChild
               >
-                Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
+                <a href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
+                  Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-gray-700 text-white hover:bg-white/5 px-8 py-6 text-lg"
+                onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Schedule Demo
+                Watch Demo
               </Button>
             </motion.div>
             <motion.p
