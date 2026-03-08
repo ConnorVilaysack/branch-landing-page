@@ -1,36 +1,39 @@
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { STRIPE_PAYMENT_LINK } from '../config';
 
+const rotatingPhrases = [
+  'a revenue engine',
+  'your best salesperson',
+  'your unfair advantage',
+  'a growth machine',
+  'your top performer',
+];
+
 export function Hero() {
+  const [phraseIdx, setPhraseIdx] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhraseIdx((p) => (p + 1) % rotatingPhrases.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-white pt-20 pb-32">
-      {/* Subtle background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute top-20 left-10 w-96 h-96 bg-emerald-100 rounded-full filter blur-3xl opacity-40"
-          animate={{
-            x: [0, 80, 0],
-            y: [0, 40, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="absolute top-40 right-10 w-96 h-96 bg-green-100 rounded-full filter blur-3xl opacity-30"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 80, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={{ x: [0, -80, 0], y: [0, 80, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
 
@@ -46,24 +49,39 @@ export function Hero() {
             <span className="text-sm font-medium">AI-Powered Pricing Optimization</span>
           </motion.div>
 
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-7xl font-bold mb-6 text-gray-900"
+            className="mb-6"
           >
-            Turn Your Pricing Page
-            <br />
-            <span className="text-emerald-600">Into a Revenue Engine</span>
-          </motion.h1>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900">
+              Turn your pricing page into
+            </h1>
+            <div className="relative h-[1.3em] text-4xl sm:text-5xl md:text-7xl font-bold mt-1">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={phraseIdx}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  className="absolute inset-x-0 text-emerald-600"
+                >
+                  {rotatingPhrases[phraseIdx]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-500 mb-10 max-w-3xl mx-auto"
+            className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto"
           >
-            Branch uses autonomous AI agents to continuously A/B test your pricing page variations—optimizing UX, UI, price points, and CTAs to maximize conversions and customer lifetime value.
+            Your pricing page is where buying decisions are made. It's your highest-leverage growth lever. But testing it manually is slow and expensive.
+            Branch uses AI agents to optimize it for you, automatically.
           </motion.p>
 
           <motion.div
@@ -78,7 +96,7 @@ export function Hero() {
               asChild
             >
               <a href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
-                Start Optimizing <ArrowRight className="ml-2 w-5 h-5" />
+                Get Early Access <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </Button>
             <Button
