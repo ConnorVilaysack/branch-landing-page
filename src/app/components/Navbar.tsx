@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { STRIPE_PAYMENT_LINK } from '../config';
+import { STRIPE_PAYMENT_LINK, trackCTAClick } from '../config';
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -42,6 +42,7 @@ export function Navbar() {
               href={STRIPE_PAYMENT_LINK}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackCTAClick('navbar')}
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg transition-colors"
             >
               Get Started

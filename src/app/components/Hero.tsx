@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
-import { STRIPE_PAYMENT_LINK } from '../config';
+import { STRIPE_PAYMENT_LINK, trackCTAClick } from '../config';
 
 const rotatingPhrases = [
   'a revenue engine',
@@ -95,7 +95,7 @@ export function Hero() {
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg"
               asChild
             >
-              <a href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
+              <a href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick('hero')}>
                 Get Early Access <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </Button>

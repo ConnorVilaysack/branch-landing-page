@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
-import { STRIPE_PAYMENT_LINK } from '../config';
+import { STRIPE_PAYMENT_LINK, trackCTAClick } from '../config';
 
 export function CTA() {
   return (
@@ -71,7 +71,7 @@ export function CTA() {
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg"
                 asChild
               >
-                <a href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
+                <a href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick('cta_section')}>
                   Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
               </Button>
